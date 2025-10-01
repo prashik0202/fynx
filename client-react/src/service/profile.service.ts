@@ -5,4 +5,8 @@ export const ProfileService = {
   getUserData: async () => {
     return apiService.get<{ user : User}>('/user/profile');
   },
+
+  updateUserData: async(data: Omit<User, "id">) => {
+    return apiService.put("/user/update/profile",data);
+  }
 };

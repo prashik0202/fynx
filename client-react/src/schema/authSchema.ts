@@ -31,3 +31,10 @@ export const verifyEmailSchema = z.object({
 });
 
 export type VerifyEmailInput = z.infer<typeof verifyEmailSchema>;
+
+export const UpdateUserSchema = SignUpSchema.pick({
+  name: true,
+  email: true
+});
+
+export type UpdateUser = z.infer<typeof UpdateUserSchema>;
