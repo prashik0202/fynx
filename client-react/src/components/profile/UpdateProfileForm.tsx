@@ -14,6 +14,9 @@ import { UpdateUserSchema, type UpdateUser } from "@/schema/authSchema"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { ProfileService } from "@/service/profile.service"
+import { toast } from "react-toastify"
 
 interface UpdateProfileFormProps {
   trigger: React.ReactNode;
@@ -21,6 +24,8 @@ interface UpdateProfileFormProps {
 }
 
 const UpdateProfileForm = ({ trigger, data } : UpdateProfileFormProps) => {
+
+  const queryClient = useQueryClient()
 
   const form = useForm<UpdateUser>({
     resolver: zodResolver(UpdateUserSchema),
@@ -30,8 +35,24 @@ const UpdateProfileForm = ({ trigger, data } : UpdateProfileFormProps) => {
     }
   });
 
+  const updateUserProfile = async(data: UpdateUser) => {
+    await ProfileService.updateUserData(data);
+  }
+
+  const mutation = useMutation({
+    mutationFn: updateUserProfile,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey : ["user-profile"]})
+    },
+  });
+
   const handleFormSubmit = async(data: UpdateUser) => {
-    console.log(data);
+    try {
+      mutation.mutate(data);
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
   }
 
   return (
