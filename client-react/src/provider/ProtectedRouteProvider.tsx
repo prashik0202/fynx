@@ -1,3 +1,4 @@
+import DashBoardLayout from '@/pages/dashboard/DashBoardLayout';
 import { useAuthMiddleware } from '@/store/authstore'
 import { Outlet, Navigate } from 'react-router-dom';
 
@@ -10,7 +11,9 @@ const ProtectedRouteProvider = () => {
   }
 
   return (
-    <Outlet />
+    <DashBoardLayout>
+      <Outlet />
+    </DashBoardLayout>
   )
 }
 

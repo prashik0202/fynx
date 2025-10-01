@@ -3,15 +3,18 @@ import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
 import AuthLayout from './pages/auth/AuthLayout';
 import VerificationPage from './pages/auth/VerificationPage';
-import UserProfilePage from './pages/profile/UserProfilePage';
+import UserProfilePage from './pages/dashboard/profile/UserProfilePage';
 import ProtectedRouteProvider from './provider/ProtectedRouteProvider';
 import HomePage from './pages/home/HomePage';
+import HomePageLayout from './pages/home/HomePageLayout';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        <Route element={<HomePageLayout />}>
+          <Route index element={<HomePage />} />
+        </Route>
         <Route path="/auth" element={<AuthLayout />}>
           <Route path="sign-in" element={<SignInPage />} />
           <Route path="sign-up" element={<SignUpPage />} />
