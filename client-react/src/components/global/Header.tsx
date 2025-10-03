@@ -19,6 +19,7 @@ const Header = () => {
             isAuthenticated ? (
               <React.Fragment>
                 <LogoutButton />
+                <Link to="/settings">Seetings</Link>
               </React.Fragment>
             ) : (
               <React.Fragment>

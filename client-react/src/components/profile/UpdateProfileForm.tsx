@@ -17,6 +17,7 @@ import { Button } from "../ui/button"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { ProfileService } from "@/service/profile.service"
 import { toast } from "react-toastify"
+import { useState } from "react"
 
 interface UpdateProfileFormProps {
   trigger: React.ReactNode;
@@ -35,6 +36,8 @@ const UpdateProfileForm = ({ trigger, data } : UpdateProfileFormProps) => {
     }
   });
 
+  const [ open, setOpen ] = useState(false);
+
   const updateUserProfile = async(data: UpdateUser) => {
     await ProfileService.updateUserData(data);
   }
@@ -49,14 +52,16 @@ const UpdateProfileForm = ({ trigger, data } : UpdateProfileFormProps) => {
   const handleFormSubmit = async(data: UpdateUser) => {
     try {
       mutation.mutate(data);
+      setOpen(false);
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
+      form.reset();
     }
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         {trigger}
       </DialogTrigger>

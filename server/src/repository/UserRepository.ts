@@ -3,7 +3,7 @@ import { User } from "../models";
 
 interface IAuthRepository {
   findById(id: string): Promise<User | null>;
-  udpateUserById(id: string, data: CreationAttributes<User>): Promise<void | null>;
+  udpateUserById(id: string, data: CreationAttributes<User>): Promise<boolean>;
 }
 
 export class UserRepository implements IAuthRepository {
@@ -11,7 +11,7 @@ export class UserRepository implements IAuthRepository {
     return await User.findByPk(id);
   }
 
-  async udpateUserById(id: string, data: CreationAttributes<User>): Promise<void| null> {
+  async udpateUserById(id: string, data: CreationAttributes<User>): Promise<boolean> {
     const [affectedCount] = await User.update({
       name: data.name,
       email: data.email,
@@ -22,6 +22,6 @@ export class UserRepository implements IAuthRepository {
       },
     });
 
-    if(affectedCount === 0) return null;
+    return affectedCount > 0;
   }
 }

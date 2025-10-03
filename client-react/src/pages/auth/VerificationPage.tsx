@@ -48,7 +48,7 @@ const VerificationPage = () => {
       if(response.status === 200 && response.data) {
         setAuthState();
         toast.success(response.data.message);
-        navigate('/profile')
+        navigate('/home')
       }
     } catch (error: unknown) {
       if(error instanceof AxiosError) {

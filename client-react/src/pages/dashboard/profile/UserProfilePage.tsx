@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ProfileService } from '@/service/profile.service';
 import { useQuery } from '@tanstack/react-query';
+import { Edit, Mail, User2 } from 'lucide-react';
 
 const UserProfilePage = () => {
 
@@ -32,27 +33,30 @@ const UserProfilePage = () => {
 
   if(data) {
     return (
-      <div className='flex flex-col items-center justify-center p-5'>
-        <Card className='shadow-md w-full md:max-w-3xl'>
+      <div className='flex flex-col items-center justify-center p-5 w-full'>
+        <Card className='shadow-md w-full md:max-w-1/2'>
           <CardHeader>
-            <CardTitle>
-              User Profile
+            <CardTitle className='text-2xl'>
+              User Settings
             </CardTitle>
           </CardHeader>
           <CardContent className='flex flex-col gap-5'>
-            <div className='flex flex-col lg:flex-row gap-5 bg-card-foreground/5 p-5 rounded-md'>
+            <div className='flex flex-col lg:flex-row gap-5 bg-card-foreground/5 p-4 rounded-md justify-between'>
               <div className='flex flex-col gap-2'>
-                <span className='text-sm'>{data.data.user.name}</span>
-                <span className='text-sm'>{data.data.user.email}</span>
+                <span className='text-sm flex items-center gap-5'><User2 className='h-4 w-4'/>{data.data.user.name}</span>
+                <span className='text-sm flex items-center gap-5'><Mail className='h-4 w-4' />{data.data.user.email}</span>
               </div>
               <UpdateProfileForm
                 data={data.data.user}
                 trigger={
-                  <Button>Edit Profile</Button>
+                  <Button variant={"outline"} size={"default"}><Edit />Edit Profile</Button>
                 }
               />
             </div>
+            <div className='p-4 flex items-center gap-5 bg-card-foreground/5 rounded-md'>
+            <span className='text-sm'>Change Theme</span>
             <ThemeToggle />
+            </div>
           </CardContent>
         </Card>
       </div>

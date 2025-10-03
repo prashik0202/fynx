@@ -3,22 +3,22 @@ import { Home, Inbox, Settings } from "lucide-react"
 export const SIDEBAR_ITEMS = [
   {
     title: "Home",
-    url: "#",
+    url: "/home",
     icon: Home,
   },
   {
     title: "Feedback",
-    url: "#",
+    url: "/feedback",
     icon: Inbox,
   },
   {
     title: "Report",
-    url: "#",
+    url: "/report",
     icon: Inbox,
   },
   {
     title: "Settings",
-    url: "#",
+    url: "/settings",
     icon: Settings,
   },
 ]

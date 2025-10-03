@@ -49,7 +49,7 @@ const SignInPage = () => {
       if(response.status === StatusCode.OK) {
         toast.success("Successfully SignIn!");
         setAuthState();
-        navigate("/profile");
+        navigate("/home");
       }
     } catch (error: unknown) {
       if(error instanceof AxiosError) {

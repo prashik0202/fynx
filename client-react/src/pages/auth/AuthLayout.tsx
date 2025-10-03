@@ -6,7 +6,7 @@ const AuthLayout = () => {
    const { isAuthenticated } = useAuthMiddleware();
 
   if (isAuthenticated) {
-    return <Navigate to="/profile" replace />; // redirect home (or dashboard)
+    return <Navigate to="/home" replace />; // redirect home (or dashboard)
   }
 
   return (

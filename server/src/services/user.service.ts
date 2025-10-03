@@ -30,10 +30,10 @@ export class UserService {
     }
 
     // update the user
-    const updatedUser = await this.userRepository.udpateUserById(userId,data);
+    const updatedUserSuccess = await this.userRepository.udpateUserById(userId,data);
 
     // if update repo returns null throw error
-    if(!updatedUser) {
+    if(!updatedUserSuccess) {
       throw new AppError("Unable to update User", 500);
     }
   }

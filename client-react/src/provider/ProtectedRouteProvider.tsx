@@ -1,4 +1,4 @@
-import DashBoardLayout from '@/pages/dashboard/DashBoardLayout';
+import Header from '@/components/global/Header';
 import { useAuthMiddleware } from '@/store/authstore'
 import { Outlet, Navigate } from 'react-router-dom';
 
@@ -11,9 +11,10 @@ const ProtectedRouteProvider = () => {
   }
 
   return (
-    <DashBoardLayout>
+    <div className='min-h-screen flex flex-col w-full gap-5 items-center'>
+      <Header />
       <Outlet />
-    </DashBoardLayout>
+    </div>
   )
 }
 

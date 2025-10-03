@@ -7,6 +7,9 @@ import UserProfilePage from './pages/dashboard/profile/UserProfilePage';
 import ProtectedRouteProvider from './provider/ProtectedRouteProvider';
 import HomePage from './pages/home/HomePage';
 import HomePageLayout from './pages/home/HomePageLayout';
+import DashboardHomePage from './pages/dashboard/home/DashboardHomePage';
+import FeedbackPage from './pages/dashboard/feedback/FeedbackPage';
+import ReportPage from './pages/dashboard/report/ReportPage';
 
 const App = () => {
   return (
@@ -22,7 +25,10 @@ const App = () => {
         </Route>
 
         <Route element={<ProtectedRouteProvider />}>
-          <Route path='/profile' element={<UserProfilePage />} />
+          <Route path='/settings' element={<UserProfilePage />} />
+          <Route path='/home' element={<DashboardHomePage />} />
+          <Route path='/feedback' element={<FeedbackPage />} />
+          <Route path='/report' element={<ReportPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
